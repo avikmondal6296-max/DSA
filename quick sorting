@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+// Function to sort the array parts
+void quickSort(int arr[], int low, int high) {
+    if (low >= high) return; // Base case: Stop if the section is empty or sorted
+
+    int pivot = arr[high]; // 1. Pick the last number as the pivot
+    int i = low;           // Track where the smaller numbers should go
+
+    // 2. Move smaller numbers to the left side
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+        }
+    }
+
+    // 3. Put the pivot right after the smaller numbers
+    int temp = arr[i];
+    arr[i] = arr[high];
+    arr[high] = temp;
+
+    // 4. Repeat the process for the left side and right side
+    quickSort(arr, low, i - 1);  // Left half
+    quickSort(arr, i + 1, high); // Right half
+}
+
+int main() {
+    int arr[] = {50, 20, 40, 10, 30};
+
+    // Call the function starting from index 0 to 4
+    quickSort(arr, 0, 4);
+
+    // Print the sorted array
+    printf("Sorted array: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
