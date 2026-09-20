@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {50, 20, 40, 10, 30};
+    int temp[5]; // Temporary workspace array
+
+    // 1. Core Merge Sort Logic (Increases size: 1 -> 2 -> 4)
+    for (int width = 1; width < 5; width = 2 * width) {
+        
+        // Go through the array in chunks of '2 * width'
+        for (int i = 0; i < 5; i = i + 2 * width) {
+            
+            int left = i;
+            int mid = i + width;
+            int right = i + 2 * width;
+
+            // Cap the boundaries so we don't go outside the array
+            if (mid > 5) mid = 5;
+            if (right > 5) right = 5;
+
+            int l = left;  // Index for left group
+            int r = mid;   // Index for right group
+            int k = left;  // Index for temp workspace
+
+            // Merge the two groups into temp[] in sorted order
+            while (l < mid && r < right) {
+                if (arr[l] <= arr[r]) {
+                    temp[k++] = arr[l++];
+                } else {
+                    temp[k++] = arr[r++];
+                }
+            }
+
+            // Copy any leftover numbers from left group
+            while (l < mid) temp[k++] = arr[l++];
+
+            // Copy any leftover numbers from right group
+            while (r < right) temp[k++] = arr[r++];
+        }
+
+        // 2. Copy the sorted workspace back into the main array
+        for (int i = 0; i < 5; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
+    // Print the sorted array
+    printf("Sorted array: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
