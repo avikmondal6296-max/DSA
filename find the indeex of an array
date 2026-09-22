@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int numbers[] = {10, 25, 30, 45, 50};
+    int target = 45; 
+    int foundIndex = -1;
+
+    for (int i = 0; i < 5; i++) {
+        if (numbers[i] == target) {
+            foundIndex = i;
+            break; 
+        }
+    }
+
+    if (foundIndex != -1) {
+        printf("Element %d found at index: %d\n", target, foundIndex);
+    } else {
+        printf("Element %d not found in the array.\n", target);
+    }
+
+    return 0;
+}
