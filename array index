@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    int numbers = {10, 20, 30, 40, 50};
+
+    printf("First element (index 0): %d\n", numbers[0]);
+    printf("Third element (index 2): %d\n", numbers[2]);
+    printf("Last element (index 4): %d\n", numbers[4]);
+
+    numbers[2] = 99;
+    printf("Updated third element (index 2): %d\n", numbers[2]);
+
+    return 0;
+}
