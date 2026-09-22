@@ -1,0 +1,17 @@
+#include <stdio.h>
+int factorial(int n) {
+    // 1. Stop condition (Base case)
+    if (n == 1) {
+        return 1;
+    }
+    // 2. Multiply and call itself again
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int num = 5; // You can change this number to test
+    
+    printf("Factorial of %d is %d\n", num, factorial(num));
+    
+    return 0;
+}
